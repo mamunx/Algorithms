@@ -1,7 +1,9 @@
-package java;
+package javaLang;
 
 import java.util.Arrays;
 import java.util.HashMap;
+
+import static utility.Utility.intArrayToString;
 
 public class TwoNumberSum {
 
@@ -32,7 +34,7 @@ public class TwoNumberSum {
         for (int i = 0; i < array.length - 1; i++) {
             int firstNum = array[i];
 
-            for (int j = i; j < array.length; j++) {
+            for (int j = i + 1; j < array.length; j++) {
                 int secondNum = array[j];
 
                 if (firstNum + secondNum == targetSum) return new int[]{firstNum, secondNum};
@@ -89,5 +91,27 @@ public class TwoNumberSum {
         }
 
         return new int[0];
+    }
+
+
+    public static void runTwoNumberSumTest() {
+        int[] sampleArray = new int[]{3, 5, -4, 8, 11, 1, -1, 6};
+        int[] resultArray = TwoNumberSum.twoNumberSum1(sampleArray, 10);
+
+        System.out.println("Java:  Two Number Sum problem using only loops");
+
+        System.out.println(intArrayToString(resultArray));
+
+        resultArray = TwoNumberSum.twoNumberSum2(sampleArray, 10);
+
+        System.out.println("Java: Two Number Sum problem using Hashmap");
+
+        System.out.println(intArrayToString(resultArray));
+
+        resultArray = TwoNumberSum.twoNumberSum3(sampleArray, 10);
+
+        System.out.println("Java: Two Number Sum problem using Left and Right index");
+
+        System.out.println(intArrayToString(resultArray));
     }
 }

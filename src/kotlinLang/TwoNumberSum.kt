@@ -1,5 +1,9 @@
-package kotlin
+@file: JvmName("KotlinTwoNumberSum")
 
+package kotlinLang
+
+import javaLang.TwoNumberSum
+import utility.Utility.intArrayToString
 import java.util.*
 
 class TwoNumberSum {
@@ -30,7 +34,7 @@ class TwoNumberSum {
         for (i in 0 until array.size - 1) {
             val firstNum = array[i]
 
-            for (j in i until array.size) {
+            for (j in i + 1 until array.size) {
                 val secondNum = array[j]
 
                 if (firstNum + secondNum == targetSum) return intArrayOf(firstNum, secondNum)
@@ -92,5 +96,26 @@ class TwoNumberSum {
         }
 
         return IntArray(0)
+    }
+
+    fun runTwoNumberSumTest() {
+        val sampleArray = intArrayOf(3, 5, -4, 8, 11, 1, -1, 6)
+        var resultArray = TwoNumberSum.twoNumberSum1(sampleArray, 10)
+
+        println("Kotlin: Two Number Sum problem using only loops")
+
+        println(intArrayToString(resultArray))
+
+        resultArray = TwoNumberSum.twoNumberSum2(sampleArray, 10)
+
+        println("Kotlin: Two Number Sum problem using Hashmap")
+
+        println(intArrayToString(resultArray))
+
+        resultArray = TwoNumberSum.twoNumberSum3(sampleArray, 10)
+
+        println("Kotlin: Two Number Sum problem using Left and Right index")
+
+        println(intArrayToString(resultArray))
     }
 }
