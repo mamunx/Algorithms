@@ -1,10 +1,8 @@
-package java;
+package kotlin
 
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*
 
-public class TwoNumberSum {
-
+class TwoNumberSum {
     /*
      * The Two Number Sum Problem
      *
@@ -28,17 +26,17 @@ public class TwoNumberSum {
      * 1. We use two loops, iterating the array, and adding the number and checking with the targetSum
      * */
 
-    public static int[] twoNumberSum1(int[] array, int targetSum) {
-        for (int i = 0; i < array.length - 1; i++) {
-            int firstNum = array[i];
+    fun twoNumberSum1(array: IntArray, targetSum: Int): IntArray {
+        for (i in 0 until array.size - 1) {
+            val firstNum = array[i]
 
-            for (int j = i; j < array.length; j++) {
-                int secondNum = array[j];
+            for (j in i until array.size) {
+                val secondNum = array[j]
 
-                if (firstNum + secondNum == targetSum) return new int[]{firstNum, secondNum};
+                if (firstNum + secondNum == targetSum) return intArrayOf(firstNum, secondNum)
             }
         }
-        return new int[0];
+        return IntArray(0)
     }
 
     /*
@@ -51,17 +49,19 @@ public class TwoNumberSum {
      *      b. check if the new value is in the hashMap, if its not then add it,
      *      c. If its in the hashMap then return item with the subtracted value.
      * */
-    public static int[] twoNumberSum2(int[] array, int targetSum) {
+    fun twoNumberSum2(array: IntArray, targetSum: Int): IntArray {
 
-        HashMap<Integer, Boolean> hashMap = new HashMap<>();
+        val hashMap = HashMap<Int, Boolean>()
 
-        for (int num : array) {
-            int potentialNum = targetSum - num;
-            if (hashMap.containsKey(potentialNum)) return new int[]{num, potentialNum};
-            else hashMap.put(num, true);
+        for (num in array) {
+            val potentialNum = targetSum - num
+            if (hashMap.containsKey(potentialNum))
+                return intArrayOf(num, potentialNum)
+            else
+                hashMap[num] = true
         }
 
-        return new int[0];
+        return IntArray(0)
     }
 
 
@@ -77,17 +77,20 @@ public class TwoNumberSum {
      * 5. If the sum is larger than the target, that means the right index should point to the previous item
      * 6. We end the loop when the indexes collide
      * */
-    public static int[] twoNumberSum3(int[] array, int targetSum) {
-        Arrays.sort(array);
-        int leftIndex = 0, rightIndex = array.length - 1;
+    fun twoNumberSum3(array: IntArray, targetSum: Int): IntArray {
+        Arrays.sort(array)
+        var leftIndex = 0
+        var rightIndex = array.size - 1
 
         while (leftIndex < rightIndex) {
-            int current = array[leftIndex] + array[rightIndex];
-            if (targetSum == current) return new int[]{array[leftIndex], array[rightIndex]};
-            else if (current <= targetSum) leftIndex += 1;
-            else rightIndex -= 1;
+            val current = array[leftIndex] + array[rightIndex]
+            when {
+                targetSum == current -> return intArrayOf(array[leftIndex], array[rightIndex])
+                current <= targetSum -> leftIndex += 1
+                else -> rightIndex -= 1
+            }
         }
 
-        return new int[0];
+        return IntArray(0)
     }
 }
