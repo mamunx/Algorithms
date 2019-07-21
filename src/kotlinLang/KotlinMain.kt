@@ -1,8 +1,11 @@
 package kotlinLang
 
 fun main() {
-    val x = TwoNumberSum()
+    /*val x = TwoNumberSum()
     x.runTwoNumberSumTest()
     val y = ThreeNumberSum()
-    y.runThreeNumberSumTest()
+    y.runThreeNumberSumTest()*/
+
+    val x = SmallestDifference()
+    x.runSmallestDifferenceTest()
 }
